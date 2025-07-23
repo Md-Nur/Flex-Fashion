@@ -12,8 +12,8 @@ class UserRole(StrEnum):
 class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     full_name: str
-    email: str = Field(index=True, unique=True)
-    phone: str
+    email: str = Field(index=True, unique=True, default=None) # optional
+    phone: str = Field(...) # required for contact
     password_hash: str
     role: UserRole = Field(default=UserRole.CUSTOMER)
 
